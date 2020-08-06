@@ -9,7 +9,7 @@ ${BASE_URL}    http://pixel-web:3000
 ***Keywords***
 ## helpers
 Open Chrome
-    Open Browser    ${BASE_URL}       chrome      options=add_experimental_option('excludeSwitches', ['enable-logging'])
+    Open Browser    about:blank       chrome      options=add_experimental_option('excludeSwitches', ['enable-logging'])
 
 ## hooks
 #  Metodo para abrir o navegador com os tamanhos de tela e tempo necessario para aguardar a apresentação
@@ -22,6 +22,7 @@ Open Session
 Login Session
     [Arguments]    ${email}    ${pass}
     Open Session 
+    Go To         ${BASE_URL}/login
     Login With    ${email}    ${pass}
 
 Close Session

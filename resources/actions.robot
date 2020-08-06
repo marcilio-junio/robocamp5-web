@@ -4,6 +4,8 @@ Documentation     Aqui teremos todas as palavras de ação dos testes automatiza
 
 Library        SeleniumLibrary
 
+Library        libs/database.py
+
 Resource    pages/BasePage.robot
 Resource    pages/LoginPage.robot
 Resource    pages/SideBar.robot
