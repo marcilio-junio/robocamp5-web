@@ -14,10 +14,12 @@ Go To Add Form
 
  Select Category  
     [Arguments]    ${cat}      
+
+    Click Element    css:input[placeholder^=Gat]
        
     # selecione item do menu Categoria
-    Wait Until Element Is Visible    xpath://li//span[text()='${product_json['cat']}'] 
-    Click Element                    xpath://li//span[text()='${product_json['cat']}']
+    Wait Until Element Is Visible    xpath://li//span[text()='${cat}']
+    Click Element                    xpath://li//span[text()='${cat}']
 
 Create New Product
    [Arguments]    ${product_json}     
@@ -30,4 +32,4 @@ Create New Product
     Input Text                       css:input[name=price]    ${product_json['price']}         
 
     # CLicar para cadastrar
-    Click Element                    id:create-product    
+    Click Element                    id:create-product 

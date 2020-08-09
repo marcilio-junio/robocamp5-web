@@ -41,7 +41,7 @@ Então devo ver a mensagem de alerta "${expert_alert}"
 
 Quando faço o cadastro este produto
     ProductPages.Go To Add Form
-    ProductPages.Create New Product  ${product_json}  
+    ProductPages.Create New Product    ${product_json}
 
 Então devo ver este item na lista   
     Table Should Contain             class:table              ${product_json['title']} 
