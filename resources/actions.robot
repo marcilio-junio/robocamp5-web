@@ -3,6 +3,7 @@
 Documentation     Aqui teremos todas as palavras de ação dos testes automatizados
 
 Library        SeleniumLibrary
+Library        OperatingSystem
 
 Library        libs/database.py
 
@@ -27,7 +28,7 @@ Então devo ver a mensagem de alerta "${expert_alert}"
     Wait Until Element Is Visible   ${DIV_ALERT}
     Element Text Should Be          ${DIV_ALERT}  ${expert_alert}
 
- Dado que eu tenho um novo produto
+Dado que eu tenho um novo produto
     [Arguments]    ${json_file}
 
     ${string_file}=     Get File    ${EXECDIR}/resources/fixtures/${json_file}
@@ -39,9 +40,17 @@ Então devo ver a mensagem de alerta "${expert_alert}"
     # Disponivel durante todo o TestCase
     Set Test Variable    ${product_json}
 
-Quando faço o cadastro este produto
+Mas eu ja cadastrei esse item e não tinha lembrado 
+    ProductPages.Go To Add Form
+    ProductPages.Create New Product    ${product_json}  
+
+Quando faço o cadastro desse produto
     ProductPages.Go To Add Form
     ProductPages.Create New Product    ${product_json}
 
 Então devo ver este item na lista   
     Table Should Contain             class:table              ${product_json['title']} 
+
+Então devo ver a mensagem de alerta
+    [Arguments]    ${expert_alert}  
+    Wait Until Element Contains      ${ALERT_DANGER}      ${expert_alert}
