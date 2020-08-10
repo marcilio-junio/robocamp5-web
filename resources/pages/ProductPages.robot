@@ -22,6 +22,14 @@ Select Category
    Wait Until Element Is Visible    xpath://li//span[text()='${cat}']
    Click Element                    xpath://li//span[text()='${cat}']
 
+Request Removel
+   [Arguments]    ${title}
+
+   Click Element    xpath://tr[td//text()[contains(.,'${product_json['title']}')]]//button
+
+Confirm Removal
+   Click Element    class=swal2-confirm
+
 Create New Product
    [Arguments]    ${product_json}     
 

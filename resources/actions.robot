@@ -7,6 +7,7 @@ Library        OperatingSystem
 
 Library        libs/database.py
 
+Resource    helpers.robot
 Resource    pages/BasePage.robot
 Resource    pages/LoginPage.robot
 Resource    pages/SideBar.robot
@@ -28,12 +29,12 @@ Então devo ver a mensagem de alerta "${expert_alert}"
     Wait Until Element Is Visible   ${DIV_ALERT}
     Element Text Should Be          ${DIV_ALERT}  ${expert_alert}
 
+# Produtos
 Dado que eu tenho um novo produto
     [Arguments]    ${json_file}
 
-    ${string_file}=     Get File    ${EXECDIR}/resources/fixtures/${json_file}
-    ${product_json}=    Evaluate    json.loads($string_file)    json
-
+    ${product_json}=    Get Json Product    ${json_file}
+     
     # Back To The Past
     Remove Product By Title   ${product_json['title']}
 
@@ -49,8 +50,34 @@ Quando faço o cadastro desse produto
     ProductPages.Create New Product    ${product_json}
 
 Então devo ver este item na lista   
-    Table Should Contain             class:table              ${product_json['title']} 
+    Table Should Contain             class:table          ${product_json['title']} 
 
 Então devo ver a mensagem de alerta
     [Arguments]    ${expert_alert}  
     Wait Until Element Contains      ${ALERT_DANGER}      ${expert_alert}
+
+# Exclusão
+Dado "${json_file}" no é um produto indesejado 
+    # Implementando com o conceito de Shared Steps
+    # Dado que eu tenho um novo produto    ${json_file}
+    # Quando faço o cadastro desse produto
+
+    # Implementando chamando as Keywords
+    ${product_json}=    Get Json Product    ${json_file}
+
+    # Back To The Past
+    Remove Product By Title   ${product_json['title']}
+
+    ProductPages.Go To Add Form
+    ProductPages.Create New Product      ${product_json}  
+
+    Set Test Variable    ${product_json}    
+    
+Quando eu solicito a Exclusão
+    ProductPages.Request Removel    ${product_json['title']}
+
+E confirmo a solicitação
+    ProductPages.Confirm Removal    
+
+Então não devo ver esse item no catálogo
+    Wait Until Element Does Not Contain    class:table      ${product_json['title']} 
