@@ -3,6 +3,9 @@
     "cat": "Super Nintendo",
     "price": "99.99",
     "desc": "Um jogo muito divertido",
-    "producers": "Nitendo, Rare",
-    "image": "donkey-kong.png"
+    "producers": [
+        "Nitendo",
+        "Rare"
+    ],
+    "file_name": "donkey-kong.jpg"
 }

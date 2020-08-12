@@ -12,6 +12,7 @@ Test Teardown     After Test
 
 ***Test Cases***
 Novo produto
+    [Tags]   new_product
     Dado que eu tenho um novo produto    dk.json
     Quando faço o cadastro desse produto
     Então devo ver este item na lista

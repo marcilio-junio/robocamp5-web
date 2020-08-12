@@ -5,22 +5,14 @@ Documentation    ProductPage -
 
 
 ***Variables***
-${PRODUCT_ADD}     class:product-add 
-${ALERT_DANGER}    class:alert-danger
+${PRODUCT_ADD}        class:product-add 
+${ALERT_DANGER}       class:alert-danger
+${INPUT_PRODUCERS}    class=producers
 
 ***Keywords***
 Go To Add Form
    Wait Until Element Is Visible   ${PRODUCT_ADD} 
    Click Element                   ${PRODUCT_ADD}
-
-Select Category  
-   [Arguments]    ${cat}      
-
-   Click Element    css:input[placeholder^=Gat]
-       
-   # selecione item do menu Categoria
-   Wait Until Element Is Visible    xpath://li//span[text()='${cat}']
-   Click Element                    xpath://li//span[text()='${cat}']
 
 Request Removel
    [Arguments]    ${title}
@@ -30,15 +22,42 @@ Request Removel
 Confirm Removal
    Click Element    class=swal2-confirm
 
+No Confirm Removal
+   Click Element    class=swal2-cancel
+
 Create New Product
    [Arguments]    ${product_json}     
 
-   Input Text                       css:input[placeholder$="produto?"]    ${product_json['title']}
-
-   Select Category                  ${product_json['cat']}   
-
-   # Adicionar o preço
-   Input Text                       css:input[name=price]    ${product_json['price']}         
+   Input Text             css:input[placeholder$="produto?"]     ${product_json['title']}
+   Select Category        ${product_json['cat']}   
+   Input Text             css:input[name=price]                  ${product_json['price']}     
+   Insert Producers       ${product_json['producers']} 
+   Input Text             css:textarea[name=description]         ${product_json['desc']}  
+   Upload Photo           ${product_json['file_name']} 
 
    # CLicar para cadastrar
-   Click Element                    id:create-product 
+   Click Element          id:create-product 
+
+Upload Photo
+   [Arguments]      ${file_name}   
+
+   ${image_file}    Set Variable    ${EXECDIR}/resources/fixtures/imagens/${file_name} 
+
+   Choose File      id=upcover     ${image_file}
+
+ Insert Producers
+   [Arguments]    ${producers} 
+
+   FOR    ${p}    IN             @{producers} 
+          Input Text             ${INPUT_PRODUCERS}     ${p}   
+          Press Keys             ${INPUT_PRODUCERS}     TAB 
+   END
+
+Select Category  
+   [Arguments]    ${cat}      
+
+   Click Element    css:input[placeholder^=Gat]
+   
+   ${taget}=        Set Variable    xpath://li//span[text()='${cat}']        
+   Wait Until Element Is Visible    ${taget}
+   Click Element                    ${taget}   
