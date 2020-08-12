@@ -22,7 +22,7 @@ Request Removel
 Confirm Removal
    Click Element    class=swal2-confirm
 
-No Confirm Removal
+Cancel Removal
    Click Element    class=swal2-cancel
 
 Create New Product

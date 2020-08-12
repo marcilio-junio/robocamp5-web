@@ -22,7 +22,7 @@ Apagar produto
 Desistir da remoção
     [Tags]    no_delete_product
 
-    Dado "mario.json" no é um produto indesejado 
+    Dado "zelda.json" no é um produto indesejado 
     Quando eu solicito a Exclusão  
     Mas cancelo a solicitação
-    Então devo ver esse item na lista   
+    Então devo ver esse item na lista

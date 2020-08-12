@@ -49,7 +49,7 @@ Quando faço o cadastro desse produto
     ProductPages.Go To Add Form
     ProductPages.Create New Product    ${product_json}
 
-Então devo ver este item na lista   
+Então devo ver esse item na lista   
     Table Should Contain             class:table          ${product_json['title']} 
 
 Então devo ver a mensagem de alerta
@@ -83,7 +83,4 @@ Então não devo ver esse item no catálogo
     Wait Until Element Does Not Contain    class:table      ${product_json['title']} 
 
 Mas cancelo a solicitação
-    ProductPages.No Confirm Removal
-
-Então devo ver esse item na lista     
-    Wait Until Element Contains    class:table      ${product_json['title']} 
+    ProductPages.Cancel Removal
