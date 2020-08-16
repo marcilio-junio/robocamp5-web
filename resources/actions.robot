@@ -2,10 +2,10 @@
 
 Documentation     Aqui teremos todas as palavras de ação dos testes automatizados
 
-Library        SeleniumLibrary
-Library        OperatingSystem
+Library     SeleniumLibrary
+Library     OperatingSystem
 
-Library        libs/database.py
+Library     libs/database.py
 
 Resource    helpers.robot
 Resource    pages/BasePage.robot

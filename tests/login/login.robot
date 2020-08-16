@@ -12,7 +12,7 @@ Library        SeleniumLibrary
 ## Suite Setup   # Tudo aqui ocorre antes de todos os teste serem executados
 ## Suite Teardown   # Tudo aqui ocorre depois em que todos os testes foram executados
 
-Resource    ../resources/actions.robot
+Resource          ../resources/actions.robot
 
 Suite Setup       Open Session
 Suite Teardown    Close Session
