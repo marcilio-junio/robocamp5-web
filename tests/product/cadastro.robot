@@ -4,7 +4,7 @@ Documentation    Cadastro de produtos
 ...              Quero cadastrar novos produtos
 ...              Para que eu possa disponibiliza-los na loja virtual
 
-Resource    ../../resources/actions.robot
+Resource         ../../resources/actions.robot
 
 Suite Setup       Login Session  papito@ninjapixel.com  pwd123
 Suite Teardown    Close Session
@@ -15,7 +15,7 @@ Novo produto
     [Tags]   new_product
     Dado que eu tenho um novo produto    dk.json
     Quando faço o cadastro desse produto
-    Então devo ver este item na lista
+    Então devo ver esse item na lista
 
 ## Ao adicionar "..." isso informa que continua na proxima linha.
 
@@ -24,7 +24,7 @@ Produto Duplicado
     Dado que eu tenho um novo produto    master.json
     Mas eu ja cadastrei esse item e não tinha lembrado
     Quando faço o cadastro desse produto
-    Então devo ver a mensagem de alerta    Oops - Este produto já foi cadastrado!
+    Então devo ver a mensagem de erro    Oops - Este produto já foi cadastrado!
 
     
 

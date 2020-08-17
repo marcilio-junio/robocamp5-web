@@ -3,6 +3,10 @@ Documentation    Basepage -
 ...              Representa a inicialização do selenium e demais cursos como ganchos e helpers
 
 
+Resource    LoginPage.robot
+Resource    Components.robot
+Resource    ProductPages.robot
+
 ***Variables***
 ${BASE_URL}    http://pixel-web:3000
 
@@ -24,6 +28,11 @@ Login Session
     Open Session 
     Go To         ${BASE_URL}/login
     Login With    ${email}    ${pass}
+
+Product Add Session
+    [Arguments]      ${email}    ${pass}
+    Login Session    ${email}    ${pass}
+    ProductPages.Go To Add Form
 
 Close Session
     Close Browser   
