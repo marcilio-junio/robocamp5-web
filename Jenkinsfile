@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker{
-            image 'python:3.7.7-stretch'
+            image 'qaninja/python-wd'
             args '--network=skynet'
         }
     }
@@ -10,6 +10,7 @@ pipeline {
         stage('Build'){
             steps{
                 sh 'pip install -r requirements.txt'
+                sh ''
             }
         }
         stage('Testing'){
