@@ -15,10 +15,21 @@ ${BASE_URL}    http://pixel-web:3000
 Open Chrome
     Open Browser    about:blank       chrome      options=add_experimental_option('excludeSwitches', ['enable-logging'])
 
+Open Chrome Headless
+    Open Browser         about:blank    headlesschrome
+
 ## hooks
 #  Metodo para abrir o navegador com os tamanhos de tela e tempo necessario para aguardar a apresentação
 Open Session 
-    Open Chrome
+
+    # robot -d ./logs -v browser:chrome tests\
+    Run Keyword If     "${browser}" == "chrome"
+    ...                Open Chrome
+    
+    # robot -d ./logs -v browser:headless tests\
+    Run Keyword If     "${browser}" == "headless"
+    ...                Open Chrome Headless
+    
     Set Window Size    1440    900
     Set Selenium Implicit Wait  5
 
@@ -40,6 +51,7 @@ Close Session
 Clear Local Storage 
     Capture Page Screenshot
     Execute Javascript    localStorage.clear();
+    After Test
 
 After Test
     Capture Page Screenshot
