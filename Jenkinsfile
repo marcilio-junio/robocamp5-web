@@ -19,7 +19,7 @@ pipeline {
             }
             post{
                 always{
-                    robot 'logs'
+                    robot outputPath: 'logs', otherFiles: '**/*.png'
                 }
             }
         }
