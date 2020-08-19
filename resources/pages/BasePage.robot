@@ -16,7 +16,7 @@ Open Chrome
     Open Browser    about:blank       chrome      options=add_experimental_option('excludeSwitches', ['enable-logging'])
 
 Open Chrome Headless
-    Open Browser         about:blank    headlesschrome
+    Open Browser         about:blank    headlesschrome    option=add_argument('--disable-dev-shm-usage')
 
 ## hooks
 #  Metodo para abrir o navegador com os tamanhos de tela e tempo necessario para aguardar a apresentação
